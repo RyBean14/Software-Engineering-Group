@@ -1,5 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Identity;
 using Software_Engineering_Group.Data;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<Software_Engineering_GroupContext>(options =>
@@ -7,6 +8,8 @@ builder.Services.AddDbContext<Software_Engineering_GroupContext>(options =>
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<Software_Engineering_GroupContext>();
 
 var app = builder.Build();
 
@@ -22,6 +25,7 @@ app.UseHttpsRedirection();
 app.UseRouting();
 
 app.UseAuthorization();
+app.UseAuthentication();
 
 app.MapStaticAssets();
 
@@ -29,6 +33,8 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}")
     .WithStaticAssets();
+
+app.MapRazorPages();
 
 
 app.Run();

@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Software_Engineering_Group.Models;
 
 namespace Software_Engineering_Group.Data
 {
-    public class Software_Engineering_GroupContext : DbContext
+    public class Software_Engineering_GroupContext : IdentityDbContext
     {
         public Software_Engineering_GroupContext (DbContextOptions<Software_Engineering_GroupContext> options)
             : base(options)
