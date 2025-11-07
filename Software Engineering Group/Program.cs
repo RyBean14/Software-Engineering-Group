@@ -1,4 +1,9 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Software_Engineering_Group.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<Software_Engineering_GroupContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("Software_Engineering_GroupContext") ?? throw new InvalidOperationException("Connection string 'Software_Engineering_GroupContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
