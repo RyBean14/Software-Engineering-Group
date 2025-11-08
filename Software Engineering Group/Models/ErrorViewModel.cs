@@ -1,4 +1,4 @@
-namespace Software_Engineering_Group.Models
+namespace SensoreApp.Models
 {
     public class ErrorViewModel
     {

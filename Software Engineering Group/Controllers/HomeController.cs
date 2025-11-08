@@ -1,8 +1,8 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using Software_Engineering_Group.Models;
+using SensoreApp.Models;
 
-namespace Software_Engineering_Group.Controllers
+namespace SensoreApp.Controllers
 {
     public class HomeController : Controller
     {
