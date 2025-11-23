@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Software_Engineering_Group.Data;
 
@@ -11,9 +12,11 @@ using Software_Engineering_Group.Data;
 namespace Software_Engineering_Group.Migrations
 {
     [DbContext(typeof(Software_Engineering_GroupContext))]
-    partial class Software_Engineering_GroupContextModelSnapshot : ModelSnapshot
+    [Migration("20251113102032_AddIdentityRoles")]
+    partial class AddIdentityRoles
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -222,32 +225,6 @@ namespace Software_Engineering_Group.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
-                });
-
-            modelBuilder.Entity("SensoreApp.Models.Report", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
-
-                    b.Property<string>("reportInfo")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("staffID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("staffResponse")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("userID")
-                        .HasColumnType("int");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Report");
                 });
 
             modelBuilder.Entity("Software_Engineering_Group.Models.User", b =>

@@ -9,7 +9,10 @@ builder.Services.AddDbContext<Software_Engineering_GroupContext>(options =>
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<Software_Engineering_GroupContext>();
+//builder.Services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<Software_Engineering_GroupContext>();
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
+    .AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<Software_Engineering_GroupContext>();
 
 var app = builder.Build();
 

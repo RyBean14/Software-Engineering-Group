@@ -2,31 +2,30 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using SensoreApp.Models;
 using Software_Engineering_Group.Data;
-using Software_Engineering_Group.Models;
 
-namespace Software_Engineering_Group.Controllers
+namespace SensoreApp.Controllers
 {
-    public class UsersController : Controller
+    public class ReportsController : Controller
     {
         private readonly Software_Engineering_GroupContext _context;
 
-        public UsersController(Software_Engineering_GroupContext context)
+        public ReportsController(Software_Engineering_GroupContext context)
         {
             _context = context;
         }
 
-        // GET: Users
+        // GET: Reports
         public async Task<IActionResult> Index()
         {
-            return View(await _context.User.ToListAsync());
+            return View(await _context.Report.ToListAsync());
         }
 
-        // GET: Users/Details/5
+        // GET: Reports/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -34,39 +33,39 @@ namespace Software_Engineering_Group.Controllers
                 return NotFound();
             }
 
-            var user = await _context.User
+            var report = await _context.Report
                 .FirstOrDefaultAsync(m => m.ID == id);
-            if (user == null)
+            if (report == null)
             {
                 return NotFound();
             }
 
-            return View(user);
+            return View(report);
         }
 
-        // GET: Users/Create
+        // GET: Reports/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Users/Create
+        // POST: Reports/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,role,username,password,email,age,gender")] User user)
+        public async Task<IActionResult> Create([Bind("ID,userID,reportInfo,staffID,staffResponse")] Report report)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(user);
+                _context.Add(report);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(user);
+            return View(report);
         }
 
-        // GET: Users/Edit/5
+        // GET: Reports/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -74,22 +73,22 @@ namespace Software_Engineering_Group.Controllers
                 return NotFound();
             }
 
-            var user = await _context.User.FindAsync(id);
-            if (user == null)
+            var report = await _context.Report.FindAsync(id);
+            if (report == null)
             {
                 return NotFound();
             }
-            return View(user);
+            return View(report);
         }
 
-        // POST: Users/Edit/5
+        // POST: Reports/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,role,username,password,email,age,gender")] User user)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,userID,reportInfo,staffID,staffResponse")] Report report)
         {
-            if (id != user.ID)
+            if (id != report.ID)
             {
                 return NotFound();
             }
@@ -98,12 +97,12 @@ namespace Software_Engineering_Group.Controllers
             {
                 try
                 {
-                    _context.Update(user);
+                    _context.Update(report);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!UserExists(user.ID))
+                    if (!ReportExists(report.ID))
                     {
                         return NotFound();
                     }
@@ -114,10 +113,10 @@ namespace Software_Engineering_Group.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(user);
+            return View(report);
         }
 
-        // GET: Users/Delete/5
+        // GET: Reports/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -125,34 +124,34 @@ namespace Software_Engineering_Group.Controllers
                 return NotFound();
             }
 
-            var user = await _context.User
+            var report = await _context.Report
                 .FirstOrDefaultAsync(m => m.ID == id);
-            if (user == null)
+            if (report == null)
             {
                 return NotFound();
             }
 
-            return View(user);
+            return View(report);
         }
 
-        // POST: Users/Delete/5
+        // POST: Reports/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var user = await _context.User.FindAsync(id);
-            if (user != null)
+            var report = await _context.Report.FindAsync(id);
+            if (report != null)
             {
-                _context.User.Remove(user);
+                _context.Report.Remove(report);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool UserExists(int id)
+        private bool ReportExists(int id)
         {
-            return _context.User.Any(e => e.ID == id);
+            return _context.Report.Any(e => e.ID == id);
         }
     }
 }
