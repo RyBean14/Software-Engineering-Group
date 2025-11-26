@@ -1,48 +1,40 @@
 ﻿@model SensoreApp.Models.Report
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Report a Problem";
 }
 
-<h1>Create</h1>
+<div class="container d-flex flex-column align-items-center mt-5">
 
-<h4>Report</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
+    <h1 class="fw-bold mb-5" style="font-size:48px;">Report a Problem</h1>
+
+    <div class="card shadow-sm p-4" style="width: 380px; border-radius: 12px;">
         <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="userID" class="control-label"></label>
-                <input asp-for="userID" class="form-control" />
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+            <div class="mb-3">
+                <label asp-for="userID" class="form-label fw-semibold"></label>
+                <input asp-for="userID" class="form-control" placeholder="Value" />
                 <span asp-validation-for="userID" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="reportInfo" class="control-label"></label>
-                <input asp-for="reportInfo" class="form-control" />
+
+            <div class="mb-3">
+                <label asp-for="reportInfo" class="form-label fw-semibold"></label>
+                <input asp-for="reportInfo" class="form-control" placeholder="Value" />
                 <span asp-validation-for="reportInfo" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="staffID" class="control-label"></label>
-                <input asp-for="staffID" class="form-control" />
-                <span asp-validation-for="staffID" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="staffResponse" class="control-label"></label>
-                <input asp-for="staffResponse" class="form-control" />
-                <span asp-validation-for="staffResponse" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
+
+            <button type="submit"
+                    class="btn w-100 text-white"
+                    style="background:#2c2c2c; height:45px; border-radius:8px;">
+                Submit
+            </button>
         </form>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
 }
