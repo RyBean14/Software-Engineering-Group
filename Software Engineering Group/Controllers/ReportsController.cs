@@ -120,6 +120,7 @@ namespace SensoreApp.Controllers
         }
 
         // GET: Reports/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
