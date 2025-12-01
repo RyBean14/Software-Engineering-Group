@@ -72,7 +72,8 @@ namespace SensoreApp.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                TempData["ErrorMessage"] = "This report has been deleted";
+                return RedirectToAction(nameof(Index));
             }
 
             var report = await _context.Report.FindAsync(id);

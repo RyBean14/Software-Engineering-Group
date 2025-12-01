@@ -5,6 +5,11 @@ VisualStudioVersion = 17.14.36518.9
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SensoreApp", "Software Engineering Group\SensoreApp.csproj", "{1439A7CB-1ED0-4B56-83A4-CCE65E57E3E9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SensoreTests", "SensoreTests\SensoreTests.csproj", "{F9635FFE-13B5-47AB-8ABD-402831963DBE}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1439A7CB-1ED0-4B56-83A4-CCE65E57E3E9} = {1439A7CB-1ED0-4B56-83A4-CCE65E57E3E9}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +20,10 @@ Global
 		{1439A7CB-1ED0-4B56-83A4-CCE65E57E3E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1439A7CB-1ED0-4B56-83A4-CCE65E57E3E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1439A7CB-1ED0-4B56-83A4-CCE65E57E3E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9635FFE-13B5-47AB-8ABD-402831963DBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9635FFE-13B5-47AB-8ABD-402831963DBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9635FFE-13B5-47AB-8ABD-402831963DBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9635FFE-13B5-47AB-8ABD-402831963DBE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
