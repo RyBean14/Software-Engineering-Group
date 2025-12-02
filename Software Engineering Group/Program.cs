@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Identity;
 using Software_Engineering_Group.Data;
+using SensoreApp.Models;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<Software_Engineering_GroupContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("Software_Engineering_GroupContext") ?? throw new InvalidOperationException("Connection string 'Software_Engineering_GroupContext' not found.")));
@@ -39,5 +40,9 @@ app.MapControllerRoute(
 
 app.MapRazorPages();
 
+using (var scope = app.Services.CreateScope())
+{
+    await RoleMaker.MakeRolesAsync(scope.ServiceProvider);
+}
 
 app.Run();

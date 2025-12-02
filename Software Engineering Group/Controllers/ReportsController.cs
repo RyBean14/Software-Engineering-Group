@@ -45,6 +45,7 @@ namespace SensoreApp.Controllers
         }
 
         // GET: Reports/Create
+        [Authorize]
         public IActionResult Create()
         {
             return View();
@@ -53,6 +54,7 @@ namespace SensoreApp.Controllers
         // POST: Reports/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Create([Bind("ID,userID,reportInfo,staffID,staffResponse")] Report report)
         {
             if (ModelState.IsValid)
@@ -65,7 +67,7 @@ namespace SensoreApp.Controllers
         }
 
         // GET: Reports/Edit/5
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -87,7 +89,7 @@ namespace SensoreApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int id, [Bind("ID,userID,reportInfo,staffID,staffResponse")] Report report)
         {
             if (id != report.ID)
@@ -119,7 +121,7 @@ namespace SensoreApp.Controllers
         }
 
         // GET: Reports/Delete/5
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
